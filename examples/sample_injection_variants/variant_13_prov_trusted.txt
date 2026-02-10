@@ -1,0 +1,2 @@
+PROVENANCE: source=trusted_instructor_notes; signature=VALID; student=id1; time=t1
+CONTENT: Observation says behavior=looking at paper.
