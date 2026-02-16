@@ -6,7 +6,7 @@ We do not treat privacy, fairness, or stability as afterthoughts.
 We treat them as design variables that directly interact with model accuracy and system behavior.
 
 This repository serves as the foundation for multiple papers and submissions, including:
-- IEEE SoutheastCon, which is the annual IEEE Region 3 Technical, Professional, and Student Conference. ( https://southeastcon.ieee.org/)
+- IEEE SoutheastCon, the annual IEEE Region 3 Technical, Professional, and Student Conference. (https://southeastcon.ieee.org/)
 - Additional workshop submissions (in preparation)
   
 Each paper uses a subset of the full experimental grid defined here.
@@ -24,7 +24,7 @@ More specifically:
 
 This repository implements controlled experiments to answer those questions.  
 
-While grounded in AI in Education and AI in Healthcare, the insights generalize to other high-stakes domains such as FinTech and Law.
+While grounded in AI in Education and AI in Healthcare, the insights generalize to other mission critical domains such as FinTech and Law.
 
 ---
 
@@ -146,6 +146,22 @@ Notes:
 Open the notebook's "Analyze and Visualize Results" cells to render plots inline or view the PNG files listed above.
 
 ---
+
+---
+## Authors
+Andre Kennth Chase Randall, Team Lead  
+PhD Student, Computer Science  
+Research focus: AI in Education
+
+Ruzan Almutairi
+Masters Student, Computer Science
+
+Kiet Chu
+Masters Student, Computer Science
+
+Neeladri Bhuiya
+Master Student, Computer Science
+
 
 ## How we used AI
 
