@@ -47,13 +47,17 @@ Across these settings, we vary:
 - Number of rounds
 - Data heterogeneity
 
+## Evaluation Dimensions
+
 We measure:
 
-- Accuracy
-- Subgroup fairness
-- Privacy risk (e.g., membership inference)
-- Stability across runs
-- Communication overhead
+- **Accuracy**:  Overall and per-class performance.
+- **Fairness**:  Subgroup and institutional disparity across configurations.
+- **Stability**:  Variance across rounds and repeated runs.
+- **Privacy risk**:   Membership inference evaluation under different constraint levels.
+- **Communication overhead**:  Cost of coordination in federated settings.
+
+Rather than optimizing a single objective, we evaluate how these dimensions shift as constraints such as privacy and decentralization are introduced.
 
 ---
 ## Datasets
@@ -99,6 +103,22 @@ Results include:
 - Stability curves
 - Privacy evaluation results
 
+## Core implementation files
+
+- Differential privacy utilities: [`dp.py`](./dp.py)  
+  Implements clipping, noise injection, and privacy accounting logic used in DP-SGD experiments.
+
+- Federated training + DP integration: [`fed_avg_dp.py`](./fed_avg_dp.py)  
+  Implements centralized, federated, and federated + differential privacy training loops.  
+  Handles client sampling, aggregation, and constraint application.
+
+- Multi-configuration experiment runner: [`run_all_modes.py`](./run_all_modes.py)  
+  Executes the full experimental grid across system configurations and privacy strengths.  
+  Logs accuracy, fairness, stability, and privacy metrics.
+
+- Shell entry point (optional local runs): [`run.sh`](./run.sh)  
+  Provides a simple command-line wrapper to launch experiments reproducibly.
+
 ## Experiment Outputs
 
 Running experiments generates structured logs, metrics, and plots.
@@ -129,13 +149,13 @@ Andre Kennth Chase Randall, Team Lead
 PhD Student, Computer Science  
 Research focus: AI in Education
 
-Ruzan Almutairi
+Ruzan Almutairi,
 Masters Student, Computer Science
 
-Kiet Chu
+Kiet Chu,
 Masters Student, Computer Science
 
-Neeladri Bhuiya
+Neeladri Bhuiya,
 Master Student, Computer Science
 
 ## Use of AI Tools
