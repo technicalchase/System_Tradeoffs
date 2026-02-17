@@ -28,7 +28,11 @@ While grounded in AI in Education and AI in Healthcare, the insights generalize 
 
 ---
 
-## System Overview
+## Experimental Framework
+
+We study tradeoffs across:
+
+### System Configurations
 
 We compare the following configurations:
 
@@ -52,100 +56,72 @@ We measure:
 - Communication overhead
 
 ---
+## Datasets
 
+This repository uses two primary datasets across different stages of the project.
 
+- Synthetic gaze dataset (course prototype)  
+  Used in early experiments to study controlled privacy and membership inference behavior.  
+  Location: [`Dataset/`](./Dataset/)  
 
-Rather than treating privacy or fairness as afterthought evaluations, this work frames them as system properties that emerge from the interaction between:
+- SIIM COVID-19 Detection dataset (Kaggle)  
+  Used in later experiments and conference submissions to evaluate system tradeoffs at realistic scale.  
+  Source: https://www.kaggle.com/competitions/siim-covid19-detection  
+  Note: Due to licensing, this dataset is not included in the repository.  
+  Users must download it directly from Kaggle and follow the preprocessing steps described in the notebook.
 
-- Task
-- Data distribution
-- Training configuration
-- Constraint mechanism
-- Evaluation protocol
-
-This repository serves as a unified codebase supporting multiple research outputs, including conference and workshop submissions.
-
-
-What you’ll find in this README
-- Quick summary & how to reproduce
-- Design & implementation notes (GCG attack and prompt-injection harness)
-- Metrics & results (what we measured, outcomes)
-- Why the local GCG attempt stopped working locally (what I observed + interpretation)
-- Defenses implemented
-- Limitations, open challenges, and next steps
-- File layout and where to find plots / outputs
+Each paper or submission uses a defined subset of configurations and datasets from this repository.
 
 ---
 
-## Quick start — reproduce the notebook
-Requirements (tested in Colab / Linux workstation):
-- Python 3.8+
-- pip packages (install in this order):
-  - pip install --upgrade pip
-  - pip install sentencepiece accelerate bitsandbytes transformers torch pillow pandas openai groq
-- (Optional) Hugging Face authentication to load gated models:
-  - `huggingface-cli login` (or set `HUGGINGFACE_TOKEN` / use local model path)
+## Quick Start
 
-Run:
-1. Open `CS690F_assignment6.ipynb` in Jupyter / Colab.
-2. Set environment variables or provide API keys in the notebook (the notebook requests OPENAI/GROQ keys).
-3. Execute the notebook cells in order.
-   - Important: the notebook contains a local GCG implementation that requires a model you can run locally and gradient access.
+### Requirements
 
-Notes:
-- The notebook shows both a GCG attempt (local gradient attack) and a prompt-injection experiment (using the Groq/OpenAI client harness).
-- If you want to re-run the GCG attack locally, you must use an accessible model (see "Why the GCG stopped working" below).
+- Python 3.9+
+- PyTorch
+- torchvision
+- numpy
+- pandas
+- scikit-learn
+- matplotlib
 
----
+### Run Experiments
 
-## Design & Implementation
+1. Clone the repository
+2. Install dependencies
+3. Open the main notebook or training script
+4. Execute cells or run scripts as documented in the experiment section
+
+Results include:
+- Accuracy metrics
+- Fairness metrics
+- Stability curves
+- Privacy evaluation results
+
+## Experiment Outputs
+
+Running experiments generates structured logs, metrics, and plots.
+
+- Training logs (CSV): [`reports/`](./reports/)  
+  Contains per-round accuracy, loss, and fairness metrics.
+
+- Model checkpoints: [`checkpoints/`](./checkpoints/)  
+  Saved model states for centralized and federated runs.
+
+- Privacy evaluation logs: [`reports/privacy/`](./reports/privacy/)  
+  Membership inference metrics and attack summaries.
+
+- Fairness summaries: [`reports/fairness/`](./reports/fairness/)  
+  Institutional accuracy breakdown and fairness gap calculations.
+
+- Stability tracking: [`reports/stability/`](./reports/stability/)  
+  Variance across rounds and repeated runs.
+
+Plots are saved as PNG files within their respective directories.  
+Open the associated notebook to render visualizations inline.
 
 
-
-## Metrics & Results (summary)
-
-
----
-
-
-
----
-
-
-
----
-
-
-
----
-
-## File layout (important files)
-- CS690F_assignment6.ipynb — main notebook with attack, injection sweep, defenses and visualizations
-- examples/
-  - sample_injection_variants/ — generated snippet variants + manifest
-- results_startup/
-  - run_*.json, (plots/) — startup harness results
-- results_variant_sweep/
-  - variant_sweep_summary.csv
-  - variant_sweep_rows.json
-  - examples/*.png (per-variant example images)
-- README.md — this file
-
----
-
-## Where to find plots and artifacts
-- Variant sweep summary: [`results_variant_sweep/variant_sweep_summary.csv`](./results_variant_sweep/variant_sweep_summary.csv)
-- Per-variant examples (text snapshots): [`results_variant_sweep/examples/variant_13_prov_trusted.png`](./results_variant_sweep/examples/variant_13_prov_trusted.png)
-- Per-variant examples (text snapshots): [`results_variant_sweep/examples/variant_12_embedded_paragraph.png`](./results_variant_sweep/examples/variant_12_embedded_paragraph.png)
-- Per-variant examples (text snapshots): [`results_variant_sweep/examples/variant_16_malicious_overt.png`](./results_variant_sweep/examples/variant_16_malicious_overt.png)
-- Startup experiment full JSON: [`results_startup/run_20251027_013803.json`](./results_startup/run_20251027_013803.json)
-- Defense Comparison plot: [`results_startup/plots/defense_comparison.png`](./results_startup/plots/defense_comparison.png)
-- Variant Success Counts plot: [`results_startup/plots/variant_success_counts.png`](./results_startup/plots/variant_success_counts.png)
-- Variant Success Rates plot: [`results_startup/plots/variant_success_rates.png`](./results_startup/plots/variant_success_rates.png)
-
-Open the notebook's "Analyze and Visualize Results" cells to render plots inline or view the PNG files listed above.
-
----
 
 ---
 ## Authors
@@ -162,7 +138,8 @@ Masters Student, Computer Science
 Neeladri Bhuiya
 Master Student, Computer Science
 
+## Use of AI Tools
 
-## How we used AI
+ChatGPT assisted with documentation drafting.  
+All experiments and results were generated by the authors’ implementation.
 
-We used ChatGPT for README structure and wording. All technical settings and results were produced by our code/notebook.
